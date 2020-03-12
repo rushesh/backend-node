@@ -4,8 +4,7 @@
   "description": "Backend",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "env-cmd ./config/dev.env nodemon src/app.js"
+    "start": "node src/app.js"
   },
   "author": "Rushesh Sharma",
   "license": "ISC",
@@ -25,9 +24,5 @@
   "engines": {
     "node": "12.14.1",
     "npm":"6.13.4"
-  },
-  "devDependencies": {
-    "env-cmd": "^8.0.2",
-    "nodemon": "^2.0.2"
   }
 }
