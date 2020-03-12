@@ -27,7 +27,8 @@ app.get('*',(req,res)=>{
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
-const port = 3000;
-app.listen(port,function(){
-    console.log("Server started. Listening at "+ port);
-});
+const port = process.env.PORT;
+
+app.listen(process.env.PORT || 3000,'0.0.0.0', function () {
+    console.log('Example app listening');
+  });
