@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "fullstack1",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
