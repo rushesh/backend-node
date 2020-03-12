@@ -30,5 +30,5 @@ require('./config/passport')(passport);
 const port = process.env.PORT;
 
 app.listen(port,'0.0.0.0', function () {
-    console.log('Example app listening',port);
+    console.log('Bakend app listening',port);
   });
