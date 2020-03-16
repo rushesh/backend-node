@@ -9,6 +9,7 @@ const connect = require('./config/database');
 const users = require('./routes/users');
 const vendors = require('./routes/vendors');
 const foodcourt = require('./routes/foodcourt');
+const contactus = require('./routes/contactus');
 
 const employees = require('./routes/employee');
 
@@ -20,6 +21,7 @@ app.use('/users',users);
 app.use('/vendors',vendors);
 app.use('/foodcourt',foodcourt);
 app.use('/employees', employees);
+app.use('/contactus', contactus);
 
 app.get('*',(req,res)=>{
     res.send('Welcome');
