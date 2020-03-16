@@ -19,10 +19,11 @@
     "mongoose": "^5.8.9",
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "twilio": "^3.40.0"
   },
   "engines": {
     "node": "12.14.1",
-    "npm":"6.13.4"
+    "npm": "6.13.4"
   }
 }
