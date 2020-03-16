@@ -25,7 +25,7 @@ const contactusSchema = mongoose.Schema({
         required:true,
     },
     otp:{
-        type:number
+        type:Number
     }
 });
 
