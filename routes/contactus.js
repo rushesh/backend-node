@@ -42,22 +42,20 @@ router.post('/register',(req,res,next)=>{
     console.log('Register contactus ',req.body);
 
     let char = new contactusmodel({
-          department: req.body.department,
-          doj: req.body.doj,
-          name: req.body.name,
-          email: req.body.email,
-          contactusid: req.body.contactusid,
-        //   password: req.body.password
+          fname: req.body.department,
+          lname: req.body.doj,
+          date: req.body.name,
+          number: req.body.email,
     });
     console.log('contactus char ',char);
 
     contactusmodel.addcontactus(char,function(result){
         console.log('in result'+result);
         if(result == undefined || result == null){
-            res.json({status:false,msg:'Registration failed'});
+            res.json({status:false,msg:'failed'});
         }
         else{
-            res.json({status:true,msg:'Registered successfully'});
+            res.json({status:true,msg:'successfull'});
         }
     });
 });
