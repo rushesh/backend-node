@@ -26,7 +26,7 @@ router.get('/allcontactussdate',(req,res,next)=>{
    
 });
 
-router.get('/getotp:/number',(req,res,next)=>{
+router.post('/getotp:/number',(req,res,next)=>{
     let phonenumber = req.params.number;
     contactusmodel.sendotp((phonenumber,msg,err)=>{
         if(err){
