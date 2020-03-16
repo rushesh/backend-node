@@ -26,7 +26,17 @@ router.get('/allcontactussdate',(req,res,next)=>{
    
 });
 
-
+router.get('/getotp:/number',(req,res,next)=>{
+    let phonenumber = req.params.number;
+    contactusmodel.sendotp((phonenumber,msg,err)=>{
+        if(err){
+            res.status(400).statusText('Error');
+        }
+        else{
+            res.status(200).json(msg);
+        }
+    });
+});
 
 router.post('/register',(req,res,next)=>{
     console.log('Register contactus ',req.body);

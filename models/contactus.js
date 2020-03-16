@@ -3,6 +3,9 @@ const bcrypt = require('bcryptjs');
 const assert  = require('assert');
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('myTotalySecretKey');
+const accountSid = 'AC78544d6848ec42ddd756a5880ac77280';
+const authToken = '8b68142eabb8ccfc53136eda19088e86';
+const client = require('twilio')(accountSid, authToken);
 
 const contactusSchema = mongoose.Schema({
     fname:{
@@ -60,3 +63,24 @@ module.exports.getAllcontactussDate = function(done){
         done(err);
     });
 }
+
+module.exports.sendotp = function(tophoneno,done){
+let otp = getRandomIntInclusive(1000,9999);
+
+  client.messages
+  .create({
+     body: 'Your OTP is : '+otp,
+     from: '+14243528264',
+     to: tophoneno
+   }).then(function(message){
+    done(message,null);
+}).catch(err=>{
+    done(null,err);
+});
+}
+
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+  }
