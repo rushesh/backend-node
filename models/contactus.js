@@ -23,6 +23,9 @@ const contactusSchema = mongoose.Schema({
     date:{
         type:Date,
         required:true,
+    },
+    otp:{
+        type:number
     }
 });
 

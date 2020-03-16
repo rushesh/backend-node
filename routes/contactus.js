@@ -41,12 +41,23 @@ router.get('/getotp:/number',(req,res,next)=>{
 router.post('/register',(req,res,next)=>{
     console.log('Register contactus ',req.body);
 
+    if(!req.body.otp){
+        let char = new contactusmodel({
+            fname: req.body.department,
+            lname: req.body.doj,
+            date: new Date(),
+            number: req.body.email,
+            otp:req.body.otp
+      });    
+    }
+    else{
     let char = new contactusmodel({
           fname: req.body.department,
           lname: req.body.doj,
-          date: req.body.name,
+          date: new Date(),
           number: req.body.email,
     });
+}
     console.log('contactus char ',char);
 
     contactusmodel.addcontactus(char,function(result){
