@@ -3,8 +3,10 @@ const bcrypt = require('bcryptjs');
 const assert  = require('assert');
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('myTotalySecretKey');
+
+
 const accountSid = 'AC78544d6848ec42ddd756a5880ac77280';
-const authToken = '8b68142eabb8ccfc53136eda19088e86';
+const authToken = 'acd9e1da2e542b1c1f981f9e4c937116';
 const client = require('twilio')(accountSid, authToken);
 
 const contactusSchema = mongoose.Schema({
@@ -21,7 +23,7 @@ const contactusSchema = mongoose.Schema({
         required:true,
     },
     date:{
-        type:Date,
+        type:String,
         required:true,
     },
     otp:{
@@ -48,15 +50,24 @@ module.exports.addcontactus = function(contactusdata,done){
 };
 
 module.exports.getAllcontactuss = function(done){
-    contactus.find().distinct.then(function(result){
-        done(result);
-    }).catch(err=>{
-        done(err);
+    contactus.aggregate([
+        // Group the docs by the geo field, taking the first doc for each unique geo
+        {$group: {
+            _id: '$geo',
+            doc: { $first: '$$ROOT' }
+        }}
+    ],(error,ids)=>{
+        if(error){
+            done(error)
+        }
+        else{
+            done(ids)
+        }
     });
 }
 
 module.exports.getAllcontactussDate = function(done){
-    contactus.find().sort().then(function(result){
+    contactus.find().sort({date:-1}).then(function(result){
         done(result);
     }).catch(err=>{
         done(err);
