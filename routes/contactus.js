@@ -26,10 +26,13 @@ router.get('/allcontactussdate',(req,res,next)=>{
    
 });
 
-router.post('/getotp:/number',(req,res,next)=>{
-    let phonenumber = req.params.number;
-    contactusmodel.sendotp((phonenumber,msg,err)=>{
+router.post('/getotp',(req,res,next)=>{
+    
+    let phonenumber = req.body.number;
+    console.log(phonenumber);
+    contactusmodel.sendotp(phonenumber,function(msg,err){
         if(err){
+            console.log(err);
             res.status(400).statusText('Error');
         }
         else{
@@ -40,22 +43,22 @@ router.post('/getotp:/number',(req,res,next)=>{
 
 router.post('/register',(req,res,next)=>{
     console.log('Register contactus ',req.body);
-
+    let char;
     if(!req.body.otp){
-        let char = new contactusmodel({
-            fname: req.body.department,
-            lname: req.body.doj,
+        char = new contactusmodel({
+            fname: req.body.fname,
+            lname: req.body.lname,
             date: new Date(),
-            number: req.body.email,
+            number: req.body.number,
             otp:req.body.otp
       });    
     }
     else{
-    let char = new contactusmodel({
-          fname: req.body.department,
-          lname: req.body.doj,
+    char = new contactusmodel({
+          fname: req.body.fname,
+          lname: req.body.lname,
           date: new Date(),
-          number: req.body.email,
+          number: req.body.number,
     });
 }
     console.log('contactus char ',char);

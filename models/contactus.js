@@ -30,9 +30,7 @@ const contactusSchema = mongoose.Schema({
 });
 
 const contactus = module.exports = mongoose.model('contactus',contactusSchema);
-
 module.exports.addcontactus = function(contactusdata,done){
-
      return contactusdata.save().then(function(result){
          console.log("result value : "+result)
         if(result){         
@@ -47,9 +45,7 @@ module.exports.addcontactus = function(contactusdata,done){
         console.log("not saved \n Error catch"+err);
         done(null);
     });  
-    // });
 };
-
 
 module.exports.getAllcontactuss = function(done){
     contactus.find().distinct.then(function(result){
@@ -69,15 +65,16 @@ module.exports.getAllcontactussDate = function(done){
 
 module.exports.sendotp = function(tophoneno,done){
 let otp = getRandomIntInclusive(1000,9999);
-
   client.messages
   .create({
      body: 'Your OTP is : '+otp,
      from: '+14243528264',
      to: tophoneno
    }).then(function(message){
+       console.log(message);
     done(message,null);
 }).catch(err=>{
+    console.log(err);
     done(null,err);
 });
 }
@@ -85,5 +82,5 @@ let otp = getRandomIntInclusive(1000,9999);
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }

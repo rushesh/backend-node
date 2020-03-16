@@ -10,7 +10,6 @@ const users = require('./routes/users');
 const vendors = require('./routes/vendors');
 const foodcourt = require('./routes/foodcourt');
 const contactus = require('./routes/contactus');
-
 const employees = require('./routes/employee');
 
 app.use(bodyparser.json());
@@ -29,7 +28,7 @@ app.get('*',(req,res)=>{
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
-const port = process.env.PORT;
+const port = process.env.PORT||3000;
 
 app.listen(port,'0.0.0.0', function () {
     console.log('Backend app listening',port);
