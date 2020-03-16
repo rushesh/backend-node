@@ -27,7 +27,7 @@ const contactusSchema = mongoose.Schema({
         required:true,
     },
     otp:{
-        type:Number
+        type:String
     }
 });
 
@@ -52,8 +52,9 @@ module.exports.addcontactus = function(contactusdata,done){
 module.exports.getAllcontactuss = function(done){
     contactus.aggregate([
         // Group the docs by the geo field, taking the first doc for each unique geo
-        {$group: {
-            _id: '$geo',
+        {
+            $group: {
+            _id: '$number',
             doc: { $first: '$$ROOT' }
         }}
     ],(error,ids)=>{
@@ -67,7 +68,7 @@ module.exports.getAllcontactuss = function(done){
 }
 
 module.exports.getAllcontactussDate = function(done){
-    contactus.find().sort({date:-1}).then(function(result){
+    contactus.find({otp:{$ne:null}}).sort({date:-1}).then(function(result){
         done(result);
     }).catch(err=>{
         done(err);

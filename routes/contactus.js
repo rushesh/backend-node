@@ -44,7 +44,8 @@ router.post('/getotp',(req,res,next)=>{
 router.post('/register',(req,res,next)=>{
     console.log('Register contactus ',req.body);
     let char;
-    if(!req.body.otp){
+    console.log(req.body);
+    if(req.body.otp){
         char = new contactusmodel({
             fname: req.body.fname,
             lname: req.body.lname,
