@@ -193,8 +193,9 @@ router.post('/authenticate',(req,res,next)=>{
     // return res.json({status:400});
     usermodel.getUserByEmail(email,(user,err)=>{
         if(err) {
-        console.log("Error In router Authenticate : "+err);throw err;}
+        console.log("Error In router Authenticate : "+err);throw err;
         console.log("error : "+err+ " \nuser"+ this.user.emailid);
+        }
         if(user==null){
             console.log('User not found');
             return res.json({status:false,statusText:'User not found'});
